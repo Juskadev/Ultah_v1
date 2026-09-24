@@ -18,14 +18,21 @@ interface OrbitSystemProps {
 export default function OrbitSystem({ photos, heroTitle, heroSubtitle, onPhotoClick }: OrbitSystemProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Track scroll for 3D camera travel
+  // Track scroll for 3D camera travel with requestAnimationFrame throttling
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const hero = document.getElementById('hero');
-      if (hero) {
-        const rect = hero.getBoundingClientRect();
-        const progress = Math.max(0, Math.min(1, -rect.top / (rect.height || 1)));
-        setScrollProgress(progress);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const hero = document.getElementById('hero');
+          if (hero) {
+            const rect = hero.getBoundingClientRect();
+            const progress = Math.max(0, Math.min(1, -rect.top / (rect.height || 1)));
+            setScrollProgress(progress);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });

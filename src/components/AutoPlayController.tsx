@@ -23,36 +23,67 @@ export default function AutoPlayController({
   const pauseTimerRef = useRef<number | null>(null);
   const isPausedForReadingRef = useRef(false);
   const lastScrollYRef = useRef(0);
+  const sectionBoundsRef = useRef<{ id: string; top: number; bottom: number }[]>([]);
+  const lastBoundsUpdateRef = useRef(0);
 
-  // Sections order
   const sections = ['hero', 'message', 'gallery', 'journey', 'cake', 'final'];
 
-  // Smooth auto-scroll loop
+  // Cache section positions to avoid layout thrashing
+  const updateSectionBounds = useCallback(() => {
+    const bounds: { id: string; top: number; bottom: number }[] = [];
+    for (const sec of sections) {
+      const el = document.getElementById(sec);
+      if (el) {
+        const top = el.offsetTop;
+        bounds.push({
+          id: sec,
+          top,
+          bottom: top + el.offsetHeight,
+        });
+      }
+    }
+    sectionBoundsRef.current = bounds;
+    lastBoundsUpdateRef.current = performance.now();
+  }, []);
+
+  useEffect(() => {
+    updateSectionBounds();
+    window.addEventListener('resize', updateSectionBounds);
+    return () => window.removeEventListener('resize', updateSectionBounds);
+  }, [updateSectionBounds]);
+
+  // Ultra-smooth frame-rate independent auto-scroll loop (60 FPS on iOS/Android)
   useEffect(() => {
     if (!hasEntered || !isPlaying) return;
 
     let animId: number;
+    let lastTime = performance.now();
 
-    const scrollStep = () => {
+    const scrollStep = (now: number) => {
+      const delta = Math.min((now - lastTime) / 1000, 0.1);
+      lastTime = now;
+
+      // Update bounds periodically without blocking
+      if (now - lastBoundsUpdateRef.current > 800) {
+        updateSectionBounds();
+      }
+
       if (!isPausedForReadingRef.current) {
-        // Pixel step per frame based on speed
-        const pixelsPerFrame = 0.85 * speed;
-        window.scrollBy({ top: pixelsPerFrame, behavior: 'instant' });
+        // Smooth target scroll pixels per second
+        const pixelsPerSecond = 55 * speed;
+        const scrollAmount = pixelsPerSecond * delta;
+        window.scrollBy(0, scrollAmount);
 
         const currentY = window.scrollY;
         const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-        // Detect current section
+        // Detect current section using cached bounds
         const scrollMiddle = currentY + window.innerHeight * 0.45;
         let detected = 'hero';
-        for (const sec of sections) {
-          const el = document.getElementById(sec);
-          if (el) {
-            const top = el.offsetTop;
-            const bottom = top + el.offsetHeight;
-            if (scrollMiddle >= top && scrollMiddle <= bottom) {
-              detected = sec;
-            }
+        for (const bound of sectionBoundsRef.current) {
+          if (scrollMiddle >= bound.top && scrollMiddle <= bound.bottom) {
+            detected = bound.id;
+            break;
           }
         }
 
@@ -61,30 +92,26 @@ export default function AutoPlayController({
 
           // Section reading pauses
           if (detected === 'message' && !isPausedForReadingRef.current) {
-            // Pause 6 seconds to let user read the love letter
             isPausedForReadingRef.current = true;
             if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
             pauseTimerRef.current = window.setTimeout(() => {
               isPausedForReadingRef.current = false;
-            }, 6500 / speed);
+            }, 6000 / speed);
           } else if (detected === 'cake' && !cakeTriggeredRef.current) {
             cakeTriggeredRef.current = true;
             isPausedForReadingRef.current = true;
-            // Wait 2.5 seconds, then blow candle automatically!
             if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
             pauseTimerRef.current = window.setTimeout(() => {
               onTriggerCakeBlow?.();
-              // After blowing, stay 5 seconds then continue
               setTimeout(() => {
                 isPausedForReadingRef.current = false;
-              }, 5000 / speed);
+              }, 4500 / speed);
             }, 2500 / speed);
           } else if (detected === 'final' && currentY >= totalHeight - 120 && !surpriseTriggeredRef.current) {
             surpriseTriggeredRef.current = true;
-            // Wait 3.5 seconds on final section, then auto open the secret surprise!
             setTimeout(() => {
               onTriggerSurprise?.();
-            }, 3500 / speed);
+            }, 3000 / speed);
           }
         }
 
@@ -104,15 +131,14 @@ export default function AutoPlayController({
       cancelAnimationFrame(animId);
       if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
     };
-  }, [hasEntered, isPlaying, speed, currentSection, onTriggerCakeBlow, onTriggerSurprise]);
+  }, [hasEntered, isPlaying, speed, currentSection, onTriggerCakeBlow, onTriggerSurprise, updateSectionBounds]);
 
   // Detect manual user scrolling to notify user they can pause or resume
   useEffect(() => {
     let timeout: number;
     const handleScroll = () => {
       const diff = Math.abs(window.scrollY - lastScrollYRef.current);
-      // Large jump means user scrolled manually
-      if (diff > 12) {
+      if (diff > 18) {
         setUserInteracted(true);
         clearTimeout(timeout);
         timeout = window.setTimeout(() => setUserInteracted(false), 5000);
@@ -158,7 +184,7 @@ export default function AutoPlayController({
   if (!hasEntered) return null;
 
   return (
-    <div className="fixed top-20 right-4 z-40 flex flex-col items-end gap-2">
+    <div className="fixed top-20 right-3 sm:right-4 z-40 flex flex-col items-end gap-2 pointer-events-auto">
       {/* Mini notification when user scrolled manually */}
       <AnimatePresence>
         {userInteracted && !isPlaying && (
@@ -166,9 +192,9 @@ export default function AutoPlayController({
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="glass-card px-3 py-1.5 rounded-full text-xs flex items-center gap-1.5 text-purple-200"
+            className="glass-card px-3 py-1.5 rounded-full text-xs flex items-center gap-1.5 text-purple-200 shadow-lg"
           >
-            <span>Manual mode active</span>
+            <span>Manual mode</span>
             <button
               onClick={() => { setIsPlaying(true); setUserInteracted(false); }}
               className="text-pink-300 font-semibold underline ml-1 cursor-pointer"
@@ -184,13 +210,13 @@ export default function AutoPlayController({
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1 }}
-        className="glass-card rounded-2xl p-2.5 flex items-center gap-2 border border-purple-500/30 shadow-xl"
-        style={{ background: 'rgba(18, 8, 42, 0.75)', backdropFilter: 'blur(16px)' }}
+        className="glass-card rounded-2xl p-2 flex items-center gap-1.5 border border-purple-500/30 shadow-xl"
+        style={{ background: 'rgba(18, 8, 42, 0.85)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}
       >
         {/* Cinema Mode indicator */}
         <div className="flex items-center gap-1.5 px-2 py-1 rounded-xl bg-purple-900/40 text-xs font-light text-purple-200">
           <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-spin" style={{ animationDuration: '8s' }} />
-          <span className="hidden sm:inline font-mono">
+          <span className="hidden md:inline font-mono">
             {isPlaying ? 'Auto-Cinema' : 'Paused'}
           </span>
         </div>
