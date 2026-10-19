@@ -272,6 +272,7 @@ export default function App() {
           <SurpriseModal
             partnerName={config.partnerName}
             senderName={config.senderName}
+            photos={config.galleryPhotos}
             onClose={() => setSurpriseOpen(false)}
           />
         )}
