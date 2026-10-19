@@ -15,36 +15,41 @@ export default function MusicPlayer({ musicSrc, title, autoplay = false }: Music
   const [progress, setProgress] = useState(0);
   const [expanded, setExpanded] = useState(false);
 
-  // iOS Safari & Android audio unlock handler
+  // Instant & mobile-compatible audio playback handler
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    audio.volume = 0.4;
+    audio.volume = 0.5;
 
-    const unlockAudio = () => {
+    const startAudio = () => {
       audio.play().then(() => {
         setIsPlaying(true);
       }).catch(() => {});
-      window.removeEventListener('touchstart', unlockAudio);
-      window.removeEventListener('click', unlockAudio);
-      window.removeEventListener('scroll', unlockAudio);
     };
 
-    if (autoplay) {
-      audio.play().then(() => {
-        setIsPlaying(true);
-      }).catch(() => {
-        // Fallback: unlock smoothly on first touch/tap/scroll on mobile
-        window.addEventListener('touchstart', unlockAudio, { passive: true });
-        window.addEventListener('click', unlockAudio);
-        window.addEventListener('scroll', unlockAudio, { passive: true });
+    // Attempt direct immediate play
+    startAudio();
+
+    const unlockAudio = () => {
+      startAudio();
+      ['touchstart', 'touchend', 'click', 'scroll', 'pointerdown'].forEach((evt) => {
+        window.removeEventListener(evt, unlockAudio);
       });
-    }
+    };
+
+    // Unlock on the very first touch/gesture anywhere on mobile/desktop
+    ['touchstart', 'touchend', 'click', 'scroll', 'pointerdown'].forEach((evt) => {
+      window.addEventListener(evt, unlockAudio, { passive: true });
+    });
+
+    const onCustomPlay = () => startAudio();
+    window.addEventListener('cosmic_play_music', onCustomPlay);
 
     return () => {
-      window.removeEventListener('touchstart', unlockAudio);
-      window.removeEventListener('click', unlockAudio);
-      window.removeEventListener('scroll', unlockAudio);
+      ['touchstart', 'touchend', 'click', 'scroll', 'pointerdown'].forEach((evt) => {
+        window.removeEventListener(evt, unlockAudio);
+      });
+      window.removeEventListener('cosmic_play_music', onCustomPlay);
     };
   }, [autoplay, musicSrc]);
 

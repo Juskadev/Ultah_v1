@@ -17,7 +17,6 @@ import DreamyClouds from './components/DreamyClouds';
 import HappyMoments from './components/HappyMoments';
 import FinalSection from './components/FinalSection';
 import AdminPanel from './components/AdminPanel';
-import AutoPlayController from './components/AutoPlayController';
 
 // Easter egg: Konami code
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
@@ -30,8 +29,6 @@ export default function App() {
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [lightboxPhotos, setLightboxPhotos] = useState(config.galleryPhotos);
   const [surpriseOpen, setSurpriseOpen] = useState(false);
-  const [musicAutoplay, setMusicAutoplay] = useState(false);
-  const [cakeBlowTrigger, setCakeBlowTrigger] = useState(false);
 
   const konamiSequenceRef = useRef<string[]>([]);
   const [konamiTriggered, setKonamiTriggered] = useState(false);
@@ -40,7 +37,7 @@ export default function App() {
 
   const handleEnter = useCallback(() => {
     setHasEntered(true);
-    setMusicAutoplay(true);
+    window.dispatchEvent(new CustomEvent('cosmic_play_music'));
   }, []);
 
   const openLightbox = useCallback((photos: typeof config.galleryPhotos, index: number) => {
@@ -115,11 +112,11 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* =================== HANDS-FREE AUTOPLAY CONTROLLER =================== */}
-      <AutoPlayController
-        hasEntered={hasEntered}
-        onTriggerCakeBlow={() => setCakeBlowTrigger(true)}
-        onTriggerSurprise={() => setSurpriseOpen(true)}
+      {/* ===== FLOATING MUSIC PLAYER ===== */}
+      <MusicPlayer
+        musicSrc={config.music}
+        title={config.musicTitle}
+        autoplay={true}
       />
 
       {/* =================== ADMIN DASHBOARD =================== */}
@@ -219,11 +216,10 @@ export default function App() {
               onPhotoClick={(i) => openLightbox(config.galleryPhotos, i)}
             />
 
-            {/* ===== BIRTHDAY CAKE (WITH HANDS-FREE AUTO-BLOW) ===== */}
+            {/* ===== BIRTHDAY CAKE ===== */}
             <BirthdayCake
               candleMessage={config.candleMessage}
               wishResponse={config.wishResponse}
-              triggerBlow={cakeBlowTrigger}
             />
 
             {/* ===== FINAL SECTION ===== */}
@@ -235,13 +231,6 @@ export default function App() {
               watermarkText={config.watermarkText}
               showWatermark={config.showWatermark}
               sellerContact={config.sellerContact}
-            />
-
-            {/* ===== FLOATING MUSIC PLAYER ===== */}
-            <MusicPlayer
-              musicSrc={config.music}
-              title={config.musicTitle}
-              autoplay={musicAutoplay}
             />
 
             {/* ===== SURPRISE BUTTON ===== */}

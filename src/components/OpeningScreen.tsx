@@ -15,6 +15,7 @@ export default function OpeningScreen({ openingLine, openingTitle, onEnter }: Op
   const handleEnter = () => {
     if (leaving) return;
     setLeaving(true);
+    window.dispatchEvent(new CustomEvent('cosmic_play_music'));
     setTimeout(onEnter, 800);
   };
 
