@@ -30,13 +30,13 @@ export const THEME_PRESETS: ColorThemePreset[] = [
   {
     id: 'midnight-rose',
     name: 'Midnight Rose 🌹',
-    description: 'Deep Burgundy Velvet, Ruby Rose & Crimson Wine',
-    primaryColor: '#fb7185',
-    secondaryColor: '#e11d48',
-    accentGlowColor: '#f59e0b',
-    bgGradientStart: '#200412',
-    bgGradientEnd: '#090106',
-    previewGradient: 'linear-gradient(135deg, #200412, #fb7185, #e11d48)',
+    description: 'Bright Velvet Burgundy, Radiant Pink & Ruby Wine',
+    primaryColor: '#ff4d8d',
+    secondaryColor: '#c2185b',
+    accentGlowColor: '#fda4af',
+    bgGradientStart: '#3d0a25',
+    bgGradientEnd: '#1a0410',
+    previewGradient: 'linear-gradient(135deg, #3d0a25, #ff4d8d, #c2185b)',
   },
   {
     id: 'oceanic-aurora',
@@ -84,7 +84,7 @@ export const THEME_PRESETS: ColorThemePreset[] = [
   },
 ];
 
-const STORAGE_KEY = 'cosmic_birthday_custom_config_v8';
+const STORAGE_KEY = 'cosmic_birthday_custom_config_v9';
 const ADMIN_PIN_KEY = 'cosmic_admin_pin_v3';
 
 // Helper to get initial config from localStorage or defaults

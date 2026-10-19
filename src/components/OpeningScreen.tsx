@@ -45,7 +45,7 @@ export default function OpeningScreen({ openingLine, openingTitle, onEnter }: Op
           exit={{ opacity: 0, scale: 1.1 }}
           transition={{ duration: 1.2, ease: 'easeInOut' }}
           className="fixed inset-0 z-[10000] flex flex-col items-center justify-center text-center px-6"
-          style={{ background: 'radial-gradient(ellipse at center, #1a0533 0%, #0a0e1a 100%)' }}
+          style={{ background: 'radial-gradient(ellipse at center, #420b28 0%, #1a0410 100%)' }}
         >
           {/* Stars in opening */}
           {Array.from({ length: 80 }).map((_, i) => (

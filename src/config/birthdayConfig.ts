@@ -142,11 +142,11 @@ Kamu adalah, dan akan selalu menjadi, bagian paling indah di seluruh semestaku.`
   showWatermark: true,
   sellerContact: "https://instagram.com/jus_romance",
 
-  // 🎨 Color Gradation & Cosmic Theme
+  // 🎨 Color Gradation & Cosmic Theme (Pink & Burgundy Terang)
   themePreset: "midnight-rose",
-  primaryColor: "#fb7185",
-  secondaryColor: "#e11d48",
-  accentGlowColor: "#f59e0b",
-  bgGradientStart: "#200412",
-  bgGradientEnd: "#090106",
+  primaryColor: "#ff4d8d",
+  secondaryColor: "#c2185b",
+  accentGlowColor: "#fda4af",
+  bgGradientStart: "#3d0a25",
+  bgGradientEnd: "#1a0410",
 };
