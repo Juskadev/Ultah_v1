@@ -269,7 +269,11 @@ export default function App() {
       {/* ===== SURPRISE MODAL ===== */}
       <AnimatePresence>
         {surpriseOpen && (
-          <SurpriseModal onClose={() => setSurpriseOpen(false)} />
+          <SurpriseModal
+            partnerName={config.partnerName}
+            senderName={config.senderName}
+            onClose={() => setSurpriseOpen(false)}
+          />
         )}
       </AnimatePresence>
 
