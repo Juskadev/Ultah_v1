@@ -35,7 +35,7 @@ export default function AdminPanel({ config, onSave, onReset }: AdminPanelProps)
   const [pinError, setPinError] = useState(false);
   const [newPinInput, setNewPinInput] = useState('');
   const [pinChangeSuccess, setPinChangeSuccess] = useState(false);
-  const [activeTab, setActiveTab] = useState<'profile' | 'letter' | 'photos' | 'timeline' | 'cake' | 'music' | 'theme' | 'system'>('profile');
+  const [activeTab, setActiveTab] = useState<'wizard' | 'profile' | 'letter' | 'photos' | 'timeline' | 'cake' | 'music' | 'theme' | 'system'>('wizard');
   const [savedSuccess, setSavedSuccess] = useState(false);
 
   // Editable local state
@@ -288,6 +288,7 @@ export default function AdminPanel({ config, onSave, onReset }: AdminPanelProps)
                   {/* Left Tabs Sidebar */}
                   <div className="w-full md:w-56 border-b md:border-b-0 md:border-r border-purple-500/20 p-3 flex md:flex-col gap-1 bg-purple-950/20 overflow-x-auto">
                     {[
+                      { id: 'wizard', label: 'Tanya Jawab Setting ✨', icon: Sparkles },
                       { id: 'profile', label: 'Nama & Judul', icon: Heart },
                       { id: 'letter', label: 'Surat Cinta', icon: Sparkles },
                       { id: 'photos', label: 'Kelola Foto', icon: ImageIcon },
@@ -318,6 +319,195 @@ export default function AdminPanel({ config, onSave, onReset }: AdminPanelProps)
 
                   {/* Main Tab Content */}
                   <div className="flex-1 p-6 overflow-y-auto min-h-0 space-y-6">
+                    {/* TAB WIZARD: Tanya Jawab Setting Bahasa Indonesia */}
+                    {activeTab === 'wizard' && (
+                      <div className="space-y-6">
+                        <div className="p-4 rounded-2xl bg-gradient-to-r from-pink-500/15 via-purple-500/15 to-indigo-500/15 border border-pink-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                          <div>
+                            <h3 className="text-base font-semibold text-white flex items-center gap-2">
+                              <Sparkles className="w-4 h-4 text-pink-400" /> Panduan Tanya Jawab Pengaturan
+                            </h3>
+                            <p className="text-xs text-purple-200/80 mt-1">
+                              Cukup jawab pertanyaan-pertanyaan berikut dalam bahasa Indonesia untuk mengubah isi website secara instan!
+                            </p>
+                          </div>
+                          <button
+                            onClick={handleSave}
+                            className="px-4 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-medium cursor-pointer shadow-md hover:opacity-90 flex items-center gap-1.5 flex-shrink-0"
+                          >
+                            <Save className="w-3.5 h-3.5" /> Simpan Jawaban
+                          </button>
+                        </div>
+
+                        {/* Pertanyaan 1 */}
+                        <div className="p-4 rounded-2xl bg-purple-950/30 border border-purple-500/20 space-y-2">
+                          <span className="text-[11px] font-mono text-pink-400 tracking-wider uppercase font-semibold">
+                            Pertanyaan 1
+                          </span>
+                          <h4 className="text-sm font-medium text-white">
+                            Siapa nama panggilan tersayang untuk pasanganmu yang sedang berulang tahun?
+                          </h4>
+                          <input
+                            type="text"
+                            placeholder="Contoh: Sayang / Dinda / Clarissa"
+                            value={form.partnerName}
+                            onChange={(e) => setForm({ ...form, partnerName: e.target.value })}
+                            className="w-full px-3.5 py-2.5 rounded-xl bg-purple-950/60 border border-purple-500/30 text-white text-sm focus:outline-none focus:border-pink-500"
+                          />
+                        </div>
+
+                        {/* Pertanyaan 2 */}
+                        <div className="p-4 rounded-2xl bg-purple-950/30 border border-purple-500/20 space-y-2">
+                          <span className="text-[11px] font-mono text-purple-400 tracking-wider uppercase font-semibold">
+                            Pertanyaan 2
+                          </span>
+                          <h4 className="text-sm font-medium text-white">
+                            Siapa namamu sebagai pengirim ucapan ulang tahun ini?
+                          </h4>
+                          <input
+                            type="text"
+                            placeholder="Contoh: Aku / Ryan / Juska"
+                            value={form.senderName}
+                            onChange={(e) => setForm({ ...form, senderName: e.target.value })}
+                            className="w-full px-3.5 py-2.5 rounded-xl bg-purple-950/60 border border-purple-500/30 text-white text-sm focus:outline-none focus:border-pink-500"
+                          />
+                        </div>
+
+                        {/* Pertanyaan 3 */}
+                        <div className="p-4 rounded-2xl bg-purple-950/30 border border-purple-500/20 space-y-3">
+                          <span className="text-[11px] font-mono text-amber-400 tracking-wider uppercase font-semibold">
+                            Pertanyaan 3
+                          </span>
+                          <h4 className="text-sm font-medium text-white">
+                            Apa kalimat pembuka dan judul di layar awal yang ingin kamu sampaikan?
+                          </h4>
+                          <div className="space-y-1.5">
+                            <label className="text-xs text-purple-300/80 block">Kalimat Pembuka:</label>
+                            <input
+                              type="text"
+                              value={form.openingLine}
+                              onChange={(e) => setForm({ ...form, openingLine: e.target.value })}
+                              className="w-full px-3.5 py-2 rounded-xl bg-purple-950/60 border border-purple-500/30 text-white text-sm focus:outline-none focus:border-pink-500"
+                            />
+                          </div>
+                          <div className="space-y-1.5">
+                            <label className="text-xs text-purple-300/80 block">Judul Layar Pembuka:</label>
+                            <input
+                              type="text"
+                              value={form.openingTitle}
+                              onChange={(e) => setForm({ ...form, openingTitle: e.target.value })}
+                              className="w-full px-3.5 py-2 rounded-xl bg-purple-950/60 border border-purple-500/30 text-white text-sm focus:outline-none focus:border-pink-500"
+                            />
+                          </div>
+                          <div className="space-y-1.5">
+                            <label className="text-xs text-purple-300/80 block">Judul Bagian Semesta 3D:</label>
+                            <textarea
+                              rows={2}
+                              value={form.heroTitle}
+                              onChange={(e) => setForm({ ...form, heroTitle: e.target.value })}
+                              className="w-full px-3.5 py-2 rounded-xl bg-purple-950/60 border border-purple-500/30 text-white text-sm focus:outline-none focus:border-pink-500"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Pertanyaan 4 */}
+                        <div className="p-4 rounded-2xl bg-purple-950/30 border border-purple-500/20 space-y-2">
+                          <span className="text-[11px] font-mono text-pink-400 tracking-wider uppercase font-semibold">
+                            Pertanyaan 4
+                          </span>
+                          <h4 className="text-sm font-medium text-white">
+                            Apa surat cinta atau pesan mendalam yang ingin kamu sampaikan padanya?
+                          </h4>
+                          <textarea
+                            rows={8}
+                            value={form.birthdayMessage}
+                            onChange={(e) => setForm({ ...form, birthdayMessage: e.target.value })}
+                            className="w-full p-3.5 rounded-xl bg-purple-950/60 border border-purple-500/30 text-white text-sm leading-relaxed focus:outline-none focus:border-pink-500 font-sans"
+                          />
+                        </div>
+
+                        {/* Pertanyaan 5 */}
+                        <div className="p-4 rounded-2xl bg-purple-950/30 border border-purple-500/20 space-y-3">
+                          <span className="text-[11px] font-mono text-amber-400 tracking-wider uppercase font-semibold">
+                            Pertanyaan 5
+                          </span>
+                          <h4 className="text-sm font-medium text-white">
+                            Apa doa dan harapan saat meniup lilin kue ulang tahun?
+                          </h4>
+                          <div className="space-y-1.5">
+                            <label className="text-xs text-purple-300/80 block">Pesan saat lilin ditiup:</label>
+                            <input
+                              type="text"
+                              value={form.candleMessage}
+                              onChange={(e) => setForm({ ...form, candleMessage: e.target.value })}
+                              className="w-full px-3.5 py-2 rounded-xl bg-purple-950/60 border border-purple-500/30 text-white text-sm focus:outline-none focus:border-pink-500"
+                            />
+                          </div>
+                          <div className="space-y-1.5">
+                            <label className="text-xs text-purple-300/80 block">Balasan doa untuknya:</label>
+                            <input
+                              type="text"
+                              value={form.wishResponse}
+                              onChange={(e) => setForm({ ...form, wishResponse: e.target.value })}
+                              className="w-full px-3.5 py-2 rounded-xl bg-purple-950/60 border border-purple-500/30 text-white text-sm focus:outline-none focus:border-pink-500"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Pertanyaan 6 */}
+                        <div className="p-4 rounded-2xl bg-purple-950/30 border border-purple-500/20 space-y-3">
+                          <span className="text-[11px] font-mono text-purple-400 tracking-wider uppercase font-semibold">
+                            Pertanyaan 6
+                          </span>
+                          <h4 className="text-sm font-medium text-white">
+                            Pilih nuansa warna semesta favorit kalian:
+                          </h4>
+                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                            {THEME_PRESETS.map((preset) => {
+                              const isSelected = (form.themePreset || 'cosmic-pink') === preset.id;
+                              return (
+                                <div
+                                  key={preset.id}
+                                  onClick={() => {
+                                    setForm({
+                                      ...form,
+                                      themePreset: preset.id,
+                                      primaryColor: preset.primaryColor,
+                                      secondaryColor: preset.secondaryColor,
+                                      accentGlowColor: preset.accentGlowColor,
+                                      bgGradientStart: preset.bgGradientStart,
+                                      bgGradientEnd: preset.bgGradientEnd,
+                                    });
+                                  }}
+                                  className={`p-3 rounded-xl border cursor-pointer transition-all ${
+                                    isSelected
+                                      ? 'border-pink-500 bg-pink-500/20 shadow-lg shadow-pink-500/10'
+                                      : 'border-purple-500/20 bg-purple-950/40 hover:border-purple-500/40'
+                                  }`}
+                                >
+                                  <div
+                                    className="w-full h-8 rounded-lg mb-2"
+                                    style={{ background: preset.previewGradient }}
+                                  />
+                                  <p className="text-xs font-semibold text-white truncate">{preset.name}</p>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* Tombol Simpan Besar */}
+                        <div className="pt-2">
+                          <button
+                            onClick={handleSave}
+                            className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:opacity-95 text-white font-semibold text-sm flex items-center justify-center gap-2 cursor-pointer shadow-xl shadow-pink-500/20"
+                          >
+                            <Save className="w-4 h-4" /> Simpan Semua Jawaban Pengaturan ✨
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
                     {/* TAB 1: Profile & Titles */}
                     {activeTab === 'profile' && (
                       <div className="space-y-4">

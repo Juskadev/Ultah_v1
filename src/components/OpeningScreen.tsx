@@ -10,12 +10,12 @@ interface OpeningScreenProps {
 
 export default function OpeningScreen({ openingLine, openingTitle, onEnter }: OpeningScreenProps) {
   const [leaving, setLeaving] = useState(false);
-  const [countdown, setCountdown] = useState(4);
+  const [countdown, setCountdown] = useState(2);
 
   const handleEnter = () => {
     if (leaving) return;
     setLeaving(true);
-    setTimeout(onEnter, 1000);
+    setTimeout(onEnter, 800);
   };
 
   // Auto-enter countdown: automatically enter without needing any click!
@@ -115,7 +115,7 @@ export default function OpeningScreen({ openingLine, openingTitle, onEnter }: Op
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.5 }}
+              transition={{ delay: 0.5 }}
               className="w-64 mb-6"
             >
               <div className="flex justify-between items-center text-xs text-purple-300/80 mb-2 font-mono">
@@ -127,7 +127,7 @@ export default function OpeningScreen({ openingLine, openingTitle, onEnter }: Op
                   className="h-full bg-gradient-to-r from-pink-500 to-purple-500 rounded-full"
                   initial={{ width: '0%' }}
                   animate={{ width: '100%' }}
-                  transition={{ duration: 4, ease: 'linear' }}
+                  transition={{ duration: 2, ease: 'linear' }}
                 />
               </div>
             </motion.div>
@@ -136,13 +136,13 @@ export default function OpeningScreen({ openingLine, openingTitle, onEnter }: Op
             <motion.button
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.6, duration: 0.8 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleEnter}
               className="btn-primary px-8 py-3.5 text-base cursor-pointer"
             >
-              <span>Langsung Masuk Sekarang ✨</span>
+              <span>Mulai Sekarang ✨</span>
             </motion.button>
           </motion.div>
         </motion.div>

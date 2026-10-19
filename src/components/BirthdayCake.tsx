@@ -156,13 +156,13 @@ export default function BirthdayCake({
           className="mb-8"
         >
           <p className="font-body text-xs tracking-[0.3em] uppercase mb-3" style={{ color: '#c084fc' }}>
-            ✦ A Moment For Wishes ✦
+            ✦ SAATNYA MENGUCAPKAN HARAPAN ✦
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-light gradient-text-cosmic">
-            Make A Wish
+            Ucapkan Harapanmu
           </h2>
           <p className="text-xs text-purple-300/80 mt-2 font-light">
-            Biarkan bintang-bintang di seluruh galaksi mendengar permohonanmu
+            Biarkan bintang-bintang di seluruh galaksi mendengar doa dan harapan terbaikmu
           </p>
         </motion.div>
 
@@ -211,11 +211,11 @@ export default function BirthdayCake({
                 fontSize: '9px',
                 color: 'white',
                 fontFamily: 'Outfit',
-                letterSpacing: '3px',
+                letterSpacing: '2px',
                 fontWeight: 600,
               }}
             >
-              HAPPY BIRTHDAY
+              SELAMAT ULANG TAHUN
             </div>
           </div>
 
@@ -297,7 +297,7 @@ export default function BirthdayCake({
                 letterSpacing: '2px',
               }}
             >
-              ✦ MAKE A WISH ✦
+              ✦ UCAPKAN HARAPAN ✦
             </div>
           </div>
 

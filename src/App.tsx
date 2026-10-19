@@ -13,6 +13,8 @@ import LoveTimeline from './components/LoveTimeline';
 import BirthdayCake from './components/BirthdayCake';
 import MusicPlayer from './components/MusicPlayer';
 import SurpriseModal from './components/SurpriseModal';
+import DreamyClouds from './components/DreamyClouds';
+import HappyMoments from './components/HappyMoments';
 import FinalSection from './components/FinalSection';
 import AdminPanel from './components/AdminPanel';
 import AutoPlayController from './components/AutoPlayController';
@@ -96,9 +98,10 @@ export default function App() {
       {/* Custom Cursor */}
       <CustomCursor />
 
-      {/* Fixed star background */}
+      {/* Fixed star and dreamy clouds background */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <StarField easterEggQuotes={config.easterEggQuotes} />
+        <DreamyClouds />
       </div>
 
       {/* =================== OPENING SCREEN (WITH AUTO-ENTER) =================== */}
@@ -150,7 +153,7 @@ export default function App() {
               >
                 <span className="text-xl group-hover:scale-125 transition-transform duration-300">✨</span>
                 <span className="font-script text-2xl text-glow-pink" style={{ color: config.primaryColor || '#f9a8d4' }}>
-                  Our Universe
+                  Semesta Kita
                 </span>
                 {config.showWatermark && (
                   <span className="hidden sm:inline-block text-[10px] font-mono tracking-wider px-2 py-0.5 rounded-full bg-purple-900/40 border border-purple-500/20 text-purple-300/80">
@@ -167,12 +170,13 @@ export default function App() {
                 className="hidden md:flex items-center gap-6"
               >
                 {[
-                  { href: '#hero', label: 'Universe 3D' },
-                  { href: '#message', label: 'Message' },
-                  { href: '#gallery', label: 'Gallery' },
-                  { href: '#journey', label: 'Journey' },
-                  { href: '#cake', label: 'Cake' },
-                  { href: '#final', label: 'Forever' },
+                  { href: '#hero', label: 'Semesta 3D' },
+                  { href: '#message', label: 'Surat Cinta' },
+                  { href: '#happy', label: 'Bahagia' },
+                  { href: '#gallery', label: 'Galeri' },
+                  { href: '#journey', label: 'Perjalanan' },
+                  { href: '#cake', label: 'Kue Ultah' },
+                  { href: '#final', label: 'Selamanya' },
                 ].map((link) => (
                   <a
                     key={link.href}
@@ -199,6 +203,9 @@ export default function App() {
               partnerName={config.partnerName}
               message={config.birthdayMessage}
             />
+
+            {/* ===== HAL-HAL YANG MEMBUAT BAHAGIA ===== */}
+            <HappyMoments />
 
             {/* ===== MEMORY GALLERY ===== */}
             <MemoryGallery

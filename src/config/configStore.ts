@@ -84,7 +84,7 @@ export const THEME_PRESETS: ColorThemePreset[] = [
   },
 ];
 
-const STORAGE_KEY = 'cosmic_birthday_custom_config_v3';
+const STORAGE_KEY = 'cosmic_birthday_custom_config_v8';
 const ADMIN_PIN_KEY = 'cosmic_admin_pin_v3';
 
 // Helper to get initial config from localStorage or defaults

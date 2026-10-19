@@ -109,7 +109,7 @@ export default function LoveTimeline({ items, onPhotoClick }: LoveTimelineProps)
             className="font-body text-sm tracking-[0.3em] mb-4"
             style={{ color: '#a78bfa' }}
           >
-            THROUGH TIME AND SPACE
+            MENEMBUS RUANG DAN WAKTU
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -117,7 +117,7 @@ export default function LoveTimeline({ items, onPhotoClick }: LoveTimelineProps)
             transition={{ delay: 0.2 }}
             className="section-title gradient-text-gold"
           >
-            Our Journey ✨
+            Kisah Perjalanan Kita ✨
           </motion.h2>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -136,7 +136,7 @@ export default function LoveTimeline({ items, onPhotoClick }: LoveTimelineProps)
             className="font-body text-sm"
             style={{ color: '#94a3b8' }}
           >
-            Every chapter of our story written in the stars
+            Setiap babak dalam kisah cinta kita yang terukir di bintang-bintang
           </motion.p>
         </div>
 

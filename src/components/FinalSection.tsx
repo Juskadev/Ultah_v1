@@ -105,7 +105,7 @@ export default function FinalSection({
             ◦ ◦ ◦
           </p>
           <h2 className="font-display text-4xl md:text-6xl font-light gradient-text-cosmic mb-4" style={{ letterSpacing: '0.1em' }}>
-            TO BE CONTINUED...
+            BERSAMBUNG...
           </h2>
         </motion.div>
 
@@ -133,7 +133,7 @@ export default function FinalSection({
           style={{ border: '1px solid rgba(167,139,250,0.15)' }}
         >
           <p className="font-script text-4xl md:text-5xl mb-3 text-glow-pink" style={{ color: '#f9a8d4' }}>
-            Happy Birthday, {partnerName || 'My Love'} ❤️
+            Selamat Ulang Tahun, {partnerName || 'Cintaku'} ❤️
           </p>
           <div style={{
             width: '60px', height: '1px',
@@ -145,7 +145,7 @@ export default function FinalSection({
           </p>
           <div className="text-center">
             <p className="font-display italic text-base font-light" style={{ color: '#94a3b8' }}>
-              With all my love,
+              Dengan segenap cintaku,
             </p>
             <p className="font-script text-3xl mt-1 text-glow-gold" style={{ color: '#fbbf24' }}>
               {senderName} ❤️
@@ -179,7 +179,7 @@ export default function FinalSection({
           className="flex flex-col items-center gap-3"
         >
           <p className="font-body text-xs tracking-widest" style={{ color: '#475569' }}>
-            Made with love, memories, and a little bit of stardust ✨
+            Dibuat dengan cinta, kenangan manis, dan taburan bintang ✨
           </p>
 
           {showWatermark && (

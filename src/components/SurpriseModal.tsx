@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 
 interface SurpriseModalProps {
@@ -7,11 +7,11 @@ interface SurpriseModalProps {
 }
 
 const STEPS = [
-  { text: "Among billions of stars...", delay: 0 },
-  { text: "Across countless galaxies...", delay: 2000 },
-  { text: "I somehow found you.", delay: 4000, highlight: true },
+  { text: "Di antara miliaran bintang di galaksi...", delay: 0 },
+  { text: "Menembus luasnya ruang dan waktu...", delay: 2000 },
+  { text: "Takdir mempertemukanku denganmu.", delay: 4000, highlight: true },
   { text: "❤️", delay: 5500, isEmoji: true },
-  { text: "And I would still choose you.", delay: 6500, final: true },
+  { text: "Dan sampai kapan pun, aku akan tetap memilihmu.", delay: 6500, final: true },
 ];
 
 export default function SurpriseModal({ onClose }: SurpriseModalProps) {
@@ -25,16 +25,16 @@ export default function SurpriseModal({ onClose }: SurpriseModalProps) {
         if (s.final && !confettiFired) {
           setConfettiFired(true);
           // Heart confetti
-          const end = Date.now() + 3000;
+          const end = Date.now() + 2500;
           const hearts = () => {
             confetti({
-              particleCount: 20,
+              particleCount: 15,
               startVelocity: 20,
               spread: 360,
               origin: { x: Math.random(), y: Math.random() * 0.5 },
               shapes: ['circle'],
               colors: ['#f472b6', '#fda4af', '#c084fc', '#a78bfa', '#fbbf24'],
-              scalar: 1.5,
+              scalar: 1.3,
             });
             if (Date.now() < end) requestAnimationFrame(hearts);
           };
@@ -44,8 +44,10 @@ export default function SurpriseModal({ onClose }: SurpriseModalProps) {
     });
   }, [confettiFired]);
 
-  // Auto-start
-  useState(() => { startSequence(); });
+  // Clean auto-start on mount
+  useEffect(() => {
+    startSequence();
+  }, [startSequence]);
 
   const visibleSteps = STEPS.slice(0, step);
 
@@ -58,16 +60,16 @@ export default function SurpriseModal({ onClose }: SurpriseModalProps) {
       transition={{ duration: 0.8 }}
       onClick={step >= STEPS.length ? onClose : undefined}
     >
-      {/* Stars */}
-      {Array.from({ length: 120 }).map((_, i) => (
+      {/* Background stars (optimized for smooth 60fps) */}
+      {Array.from({ length: 45 }).map((_, i) => (
         <div
           key={i}
           className="star"
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
-            width: `${Math.random() * 3 + 0.5}px`,
-            height: `${Math.random() * 3 + 0.5}px`,
+            width: `${Math.random() * 2.5 + 0.5}px`,
+            height: `${Math.random() * 2.5 + 0.5}px`,
             animationDelay: `${Math.random() * 4}s`,
             animationDuration: `${Math.random() * 2 + 1.5}s`,
           }}
@@ -76,8 +78,8 @@ export default function SurpriseModal({ onClose }: SurpriseModalProps) {
 
       {/* Nebula */}
       <div className="nebula" style={{
-        width: '600px', height: '600px',
-        background: 'rgba(109,40,217,0.3)',
+        width: '500px', height: '500px',
+        background: 'rgba(109,40,217,0.25)',
         top: '50%', left: '50%',
         transform: 'translate(-50%,-50%)',
       }} />
@@ -119,15 +121,15 @@ export default function SurpriseModal({ onClose }: SurpriseModalProps) {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            transition={{ delay: 0.8 }}
             className="mt-12"
           >
             <button
               onClick={onClose}
-              className="btn-cosmic px-8 py-3 text-sm"
+              className="btn-cosmic px-8 py-3 text-sm cursor-pointer"
               style={{ color: '#a78bfa' }}
             >
-              Close ✨
+              Tutup & Lanjutkan ✨
             </button>
           </motion.div>
         )}

@@ -129,7 +129,7 @@ export default function Cosmic3DScene({
       precision: isMobile ? 'mediump' : 'highp',
     });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.2 : 1.5));
     container.appendChild(renderer.domElement);
 
     // --- 2. Lighting ---
@@ -193,7 +193,7 @@ export default function Cosmic3DScene({
     }[] = [];
 
     const raycastTargets: THREE.Object3D[] = [];
-    const effectivePhotos = photos.slice(0, 5);
+    const effectivePhotos = photos.slice(0, 8);
     const photoOrbitRadius = 65;
 
     effectivePhotos.forEach((photo, idx) => {
@@ -239,8 +239,8 @@ export default function Cosmic3DScene({
       });
     });
 
-    // --- 6. 3D Starfield Galaxy (Optimized count for mobile 60 FPS) ---
-    const starCount = isMobile ? 900 : 2800;
+    // --- 6. 3D Starfield Galaxy (Optimized count for 60 FPS) ---
+    const starCount = isMobile ? 500 : 1100;
     const starPositions = new Float32Array(starCount * 3);
     const starColors = new Float32Array(starCount * 3);
 
@@ -283,7 +283,7 @@ export default function Cosmic3DScene({
     scene.add(starField);
 
     // --- 7. 3D Nebula Dust ---
-    const nebulaCount = isMobile ? 50 : 220;
+    const nebulaCount = isMobile ? 35 : 75;
     const nebulaGeo = new THREE.BufferGeometry();
     const nebulaPos = new Float32Array(nebulaCount * 3);
     const nebulaColors = new Float32Array(nebulaCount * 3);

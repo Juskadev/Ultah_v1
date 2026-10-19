@@ -139,7 +139,7 @@ export default function MemoryGallery({ photos, onPhotoClick }: MemoryGalleryPro
             className="font-body text-sm tracking-[0.3em] mb-4"
             style={{ color: '#a78bfa' }}
           >
-            CHERISHED MEMORIES
+            KENANGAN TERINDAH
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -147,7 +147,7 @@ export default function MemoryGallery({ photos, onPhotoClick }: MemoryGalleryPro
             transition={{ delay: 0.2, duration: 0.8 }}
             className="section-title gradient-text-pink"
           >
-            Our Little Universe
+            Semesta Kecil Kita
           </motion.h2>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -166,7 +166,7 @@ export default function MemoryGallery({ photos, onPhotoClick }: MemoryGalleryPro
             className="font-body text-sm font-light"
             style={{ color: '#94a3b8' }}
           >
-            A collection of moments that made our universe shine brighter
+            Koleksi momen manis yang membuat semestaku bersinar jauh lebih terang
           </motion.p>
         </div>
 

@@ -44,9 +44,9 @@ export default function BirthdayMessage({ message }: BirthdayMessageProps) {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <p className="font-body text-sm tracking-[0.3em] mb-4" style={{ color: '#a78bfa' }}>A MESSAGE FROM THE HEART</p>
+          <p className="font-body text-sm tracking-[0.3em] mb-4" style={{ color: '#a78bfa' }}>PESAN DARI LUBUK HATI</p>
           <h2 className="font-script text-5xl md:text-7xl text-glow-pink mb-4" style={{ color: '#f9a8d4' }}>
-            Happy Birthday, My Love
+            Selamat Ulang Tahun, Cintaku
           </h2>
           <p className="font-script text-2xl" style={{ color: '#c4b5fd' }}>❤️</p>
           <div style={{

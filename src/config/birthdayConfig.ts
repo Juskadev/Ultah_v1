@@ -4,117 +4,134 @@
 
 export const birthdayConfig = {
   // Names
-  partnerName: "Sayang",       // ← Ganti nama pasangan kamu
-  senderName: "Aku",           // ← Ganti nama kamu
+  partnerName: "Mutia Fajriah",       // ← Nama pasangan
+  senderName: "Aku",                  // ← Nama kamu
 
   // Music — place your file in /public/music.mp3
-  music: "/music.mp3",
-  musicTitle: "Our Little Universe",
+  music: "./music.mp3",
+  musicTitle: "Happy Birthday - Mkartikawati",
 
   // Opening Screen
-  openingLine: "Untuk seseorang yang membuat duniaku terasa lebih indah...",
-  openingTitle: "Happy Birthday, My Love ❤️",
+  openingLine: "Untuk seseorang yang membuat duniaku terasa jauh lebih indah...",
+  openingTitle: "Selamat Ulang Tahun, Mutia Fajriah ❤️",
 
   // Hero
-  heroTitle: "YOU ARE MY\nFAVORITE UNIVERSE",
-  heroSubtitle: "Every universe would still lead me back to you.",
+  heroTitle: "KAMU ADALAH\nSEMESTA TERINDAHKU",
+  heroSubtitle: "Di semesta mana pun, hatiku akan selalu menuntunku kembali kepadamu.",
 
   // Birthday Message
-  birthdayMessage: `Selamat ulang tahun untuk seseorang yang berhasil membuat hari-hariku menjadi lebih berwarna.
+  birthdayMessage: `Selamat ulang tahun untuk seseorang yang selalu berhasil membuat hari-hariku menjadi lebih berwarna.
 
-Terima kasih sudah hadir, sudah menjadi tempat untuk berbagi cerita, tawa, mimpi, dan begitu banyak kenangan indah.
+Terima kasih sudah hadir di hidupku, menjadi tempat untuk berbagi cerita, tawa, mimpi, dan begitu banyak kenangan indah yang tak tergantikan.
 
-Aku mungkin tidak bisa menjanjikan bahwa setiap hari akan selalu sempurna, tapi aku ingin terus menciptakan sebanyak mungkin alasan untuk membuatmu tersenyum.
+Aku mungkin tidak bisa menjanjikan bahwa setiap hari akan selalu sempurna, tapi aku berjanji akan terus berusaha menciptakan sebanyak mungkin alasan untuk membuatmu tersenyum bahagia.
 
-Semoga di usia yang baru ini, semua hal baik perlahan datang kepadamu. Semoga langkahmu selalu dipenuhi kebahagiaan, kesehatan, keberanian, dan orang-orang yang benar-benar menyayangimu.
+Semoga di usia yang baru ini, segala kebaikan dan kebahagiaan selalu datang menyertai langkahmu. Semoga kamu selalu diberi kesehatan, ketenangan hati, keberanian untuk meraih impian, dan dikelilingi orang-orang yang tulus menyayangimu.
 
-Dan kalau suatu hari kamu merasa dunia terlalu berat, semoga kamu selalu ingat bahwa ada seseorang yang akan selalu mendoakan kebahagiaanmu.
+Dan jika suatu saat dunia terasa berat, ingatlah selalu bahwa ada aku di sini yang akan selalu mendukung, mendoakan, dan mencintaimu sepenuh hati.
 
-Happy Birthday, sayang. ❤️
+Selamat ulang tahun, sayangku. ❤️
 
-You are, and will always be, one of the most beautiful parts of my universe.`,
+Kamu adalah, dan akan selalu menjadi, bagian paling indah di seluruh semestaku.`,
 
   // Orbit Photos — place photos in /public/photos/
   orbitPhotos: [
-    { src: "/photos/photo1.jpg", caption: "Di sini, aku sadar bahwa senyummu adalah salah satu pemandangan favoritku." },
-    { src: "/photos/photo2.jpg", caption: "Another memory I would choose again and again." },
-    { src: "/photos/photo3.jpg", caption: "Kalau waktu bisa diulang, aku tetap ingin bertemu kamu." },
-    { src: "/photos/photo4.jpg", caption: "Every moment with you feels like magic." },
-    { src: "/photos/photo5.jpg", caption: "In a universe of possibilities, I would always choose this." },
+    { src: "./photos/photo1.jpg", caption: "Di sini, aku sadar bahwa senyummu adalah pemandangan terindah di semestaku." },
+    { src: "./photos/photo2.jpg", caption: "Sebuah kenangan manis yang akan selalu kupilih lagi dan lagi." },
+    { src: "./photos/photo3.jpg", caption: "Jika waktu bisa berputar kembali, aku akan tetap memilih untuk bertemu denganmu." },
+    { src: "./photos/photo4.jpg", caption: "Setiap detik bersamamu selalu terasa ajaib dan penuh kehangatan." },
+    { src: "./photos/photo5.jpg", caption: "Di antara miliaran kemungkinan di galaksi, takdir terindahku adalah bersamamu." },
+    { src: "./photos/photo6.jpg", caption: "Manisnya senyummu yang selalu membuat hariku jauh lebih tenang." },
+    { src: "./photos/photo7.jpg", caption: "Pesona anggunmu yang selalu membuatku bersyukur memilikimu." },
+    { src: "./photos/photo8.jpg", caption: "Tingkah manjamu yang selalu kurindukan setiap saat." },
   ],
 
   // Gallery Photos
   galleryPhotos: [
-    { src: "/photos/photo1.jpg", caption: "Our first beautiful memory." },
-    { src: "/photos/photo2.jpg", caption: "A moment I will always remember." },
-    { src: "/photos/photo3.jpg", caption: "Happiness looks like this." },
-    { src: "/photos/photo4.jpg", caption: "Forever captured in time." },
-    { src: "/photos/photo5.jpg", caption: "Laughing with you is my favorite thing." },
-    { src: "/photos/photo6.jpg", caption: "The world is better with you in it." },
-    { src: "/photos/photo7.jpg", caption: "Us, always." },
-    { src: "/photos/photo8.jpg", caption: "My favorite adventure." },
+    { src: "./photos/photo1.jpg", caption: "Kenangan indah pertama yang tak terlupakan." },
+    { src: "./photos/photo2.jpg", caption: "Momen manis yang selalu tersimpan rapi di sudut hati." },
+    { src: "./photos/photo3.jpg", caption: "Beginilah arti kebahagiaan yang sesungguhnya bagiku." },
+    { src: "./photos/photo4.jpg", caption: "Terukir abadi dan tak akan pernah pudar oleh waktu." },
+    { src: "./photos/photo5.jpg", caption: "Tertawa lepas bersamamu adalah momen favoritku." },
+    { src: "./photos/photo6.jpg", caption: "Duniaku jauh lebih bercahaya karena ada kamu di dalamnya." },
+    { src: "./photos/photo7.jpg", caption: "Tentang kita, cinta kita, untuk selamanya." },
+    { src: "./photos/photo8.jpg", caption: "Petualangan cinta paling membahagiakan dalam hidupku." },
   ],
 
   // Timeline
   timeline: [
     {
-      date: "The Beginning",
-      title: "First Meeting ✨",
+      date: "Awal Mula",
+      title: "Pertama Kali Bertemu ✨",
       description: "Di antara berjuta kemungkinan, alam semesta mempertemukan kita. Dan aku bersyukur setiap harinya.",
-      image: "/photos/photo1.jpg",
+      image: "./photos/photo1.jpg",
       emoji: "⭐",
     },
     {
-      date: "The First Words",
-      title: "First Chat 💬",
-      description: "Kata-kata pertama yang kita tukar terasa seperti bintang-bintang yang mulai bersinar satu per satu.",
-      image: "/photos/photo2.jpg",
+      date: "Kata-Kata Pertama",
+      title: "Pesan Pertama Kita 💬",
+      description: "Kata-kata pertama yang kita tukar terasa seperti bintang-bintang yang mulai bersinar satu per satu di langit malam.",
+      image: "./photos/photo2.jpg",
       emoji: "🌙",
     },
     {
-      date: "The First Date",
-      title: "First Date 🌹",
-      description: "Waktu terasa berhenti, dan aku sadar ini adalah awal dari sesuatu yang sangat indah.",
-      image: "/photos/photo3.jpg",
+      date: "Kencan Pertama",
+      title: "Jalan Bersama Pertama Kali 🌹",
+      description: "Waktu seolah terhenti sejenak, dan aku sadar ini adalah awal dari kisah cinta yang sangat indah.",
+      image: "./photos/photo3.jpg",
       emoji: "💫",
     },
     {
-      date: "Favorite Memory",
-      title: "Our Favorite Moment 🌌",
-      description: "Momen yang selalu akan kita ceritakan — ketika dunia terasa sempurna untuk sejenak.",
-      image: "/photos/photo4.jpg",
+      date: "Kenangan Terindah",
+      title: "Momen Spesial Berdua 🌌",
+      description: "Momen yang akan selalu kita ceritakan kembali — ketika dunia terasa begitu damai dan sempurna.",
+      image: "./photos/photo4.jpg",
       emoji: "🌠",
     },
     {
-      date: "Special Moment",
-      title: "Something Special 💖",
-      description: "Sebuah momen yang mengajarkanku bahwa kebersamaan sederhana pun bisa terasa luar biasa.",
-      image: "/photos/photo5.jpg",
+      date: "Arti Kebersamaan",
+      title: "Hal Paling Berharga 💖",
+      description: "Momen yang mengajarkanku bahwa kebersamaan sederhana bersamamu selalu terasa luar biasa istimewa.",
+      image: "./photos/photo5.jpg",
       emoji: "✨",
     },
     {
-      date: "Today & Always",
-      title: "Today ❤️",
-      description: "Dan hari ini, di hari ulang tahunmu, aku ingin kamu tahu bahwa kamu adalah salah satu hal terbaik dalam hidupku.",
-      image: "/photos/photo6.jpg",
+      date: "Senyum Manismu",
+      title: "Penenang Segala Resah ☕",
+      description: "Melihatmu tersenyum dan menikmati hari selalu berhasil membuat segala lelahku hilang seketika.",
+      image: "./photos/photo6.jpg",
+      emoji: "🥰",
+    },
+    {
+      date: "Pesona Anggunmu",
+      title: "Bidadari Semestaku 👑",
+      description: "Cantik, teduh, dan selalu memancarkan keanggunan yang tak pernah gagal membuatku jatuh cinta berkali-kali.",
+      image: "./photos/photo7.jpg",
+      emoji: "✨",
+    },
+    {
+      date: "Hari Ini & Selamanya",
+      title: "Hari Ulang Tahunmu ❤️",
+      description: "Dan hari ini, di hari ulang tahunmu, aku ingin kamu tahu bahwa kamu adalah anugerah terindah dalam hidupku.",
+      image: "./photos/photo8.jpg",
       emoji: "❤️",
     },
   ],
 
   // Cake wish message
-  candleMessage: "Your wish is on its way to the stars ✨",
-  wishResponse: "And my wish is simple: I hope you always have reasons to smile.",
+  candleMessage: "Permohonanmu sedang terbang menuju bintang-bintang ✨",
+  wishResponse: "Dan harapanku sederhana: semoga kamu selalu bahagia dan tersenyum selamanya.",
 
   // Final section
-  finalMessage: "Our story is still being written.",
-  closingWords: "Thank you for being part of my universe.",
+  finalMessage: "Kisah cinta kita masih terus tertulis dan akan selalu abadi.",
+  closingWords: "Terima kasih sudah menjadi bagian paling indah dalam semestaku.",
 
   // Hidden quotes for easter eggs
   easterEggQuotes: [
-    "Kamu adalah bintang favoritku di galaksi ini. 🌟",
-    "Di antara miliaran kemungkinan, aku selalu memilih kamu. ❤️",
-    "Senyummu adalah matahari dalam universeku. ☀️",
-    "Terima kasih sudah menjadi bagian dari hidupku yang paling indah. 💫",
+    "Kamu adalah bintang paling terang di seluruh galaksiku. 🌟",
+    "Di antara miliaran kemungkinan, aku akan selalu memilihmu. ❤️",
+    "Senyummu adalah matahari yang selalu menghangatkan hatiku. ☀️",
+    "Terima kasih sudah menjadi bagian terindah dalam hidupku. 💫",
   ],
 
   // ============================================================
@@ -126,10 +143,10 @@ You are, and will always be, one of the most beautiful parts of my universe.`,
   sellerContact: "https://instagram.com/jus_romance",
 
   // 🎨 Color Gradation & Cosmic Theme
-  themePreset: "cosmic-pink",
-  primaryColor: "#f472b6",
-  secondaryColor: "#a78bfa",
-  accentGlowColor: "#fbbf24",
-  bgGradientStart: "#12082a",
-  bgGradientEnd: "#0a0e1a",
+  themePreset: "midnight-rose",
+  primaryColor: "#fb7185",
+  secondaryColor: "#e11d48",
+  accentGlowColor: "#f59e0b",
+  bgGradientStart: "#200412",
+  bgGradientEnd: "#090106",
 };

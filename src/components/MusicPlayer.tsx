@@ -161,6 +161,7 @@ export default function MusicPlayer({ musicSrc, title, autoplay = false }: Music
                 {/* Play/Pause */}
                 <button
                   onClick={togglePlay}
+                  title={isPlaying ? 'Jeda Musik' : 'Putar Musik'}
                   className="p-1.5 text-purple-300 hover:text-white rounded-lg hover:bg-purple-800/30 transition-colors cursor-pointer"
                 >
                   {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
@@ -169,6 +170,7 @@ export default function MusicPlayer({ musicSrc, title, autoplay = false }: Music
                 {/* Mute */}
                 <button
                   onClick={toggleMute}
+                  title={isMuted ? 'Bunyikan Musik' : 'Bisukan Musik'}
                   className="p-1.5 text-purple-300 hover:text-white rounded-lg hover:bg-purple-800/30 transition-colors cursor-pointer"
                 >
                   {isMuted ? <VolumeX className="w-3.5 h-3.5 text-rose-400" /> : <Volume2 className="w-3.5 h-3.5" />}

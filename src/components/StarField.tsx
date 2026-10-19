@@ -28,32 +28,47 @@ export default function StarField({ easterEggQuotes = [] }: StarFieldProps) {
     let height = (canvas.height = window.innerHeight);
     const isMobile = width < 768 || 'ontouchstart' in window;
 
-    const starCount = isMobile ? 60 : 150;
+    const starCount = isMobile ? 40 : 80;
+    const colors = ['#ffffff', '#f472b6', '#a78bfa', '#fbbf24', '#67e8f9'];
     const stars = Array.from({ length: starCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      size: Math.random() * 1.5 + 0.5,
-      alpha: Math.random(),
-      speed: Math.random() * 0.02 + 0.005,
-      color: ['#ffffff', '#f472b6', '#a78bfa', '#fbbf24', '#67e8f9'][Math.floor(Math.random() * 5)],
+      size: Math.random() * 1.5 + 0.6,
+      alpha: Math.random() * 0.8 + 0.2,
+      speed: Math.random() * 0.015 + 0.005,
+      colorIndex: Math.floor(Math.random() * colors.length),
     }));
 
     let animId: number;
+    let lastRender = 0;
 
-    const render = () => {
+    const render = (now: number) => {
+      // Throttle canvas to 30-40fps for background stars to save CPU/battery while remaining visually smooth
+      if (now - lastRender < 24) {
+        animId = requestAnimationFrame(render);
+        return;
+      }
+      lastRender = now;
+
       ctx.clearRect(0, 0, width, height);
 
-      for (let i = 0; i < starCount; i++) {
-        const s = stars[i];
-        s.alpha += s.speed;
-        if (s.alpha > 1 || s.alpha < 0.2) {
-          s.speed = -s.speed;
-        }
-
-        ctx.fillStyle = s.color;
-        ctx.globalAlpha = Math.max(0.1, Math.min(1, s.alpha));
+      // Group draw calls by color to reduce context state switches
+      for (let c = 0; c < colors.length; c++) {
+        ctx.fillStyle = colors[c];
         ctx.beginPath();
-        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        for (let i = 0; i < starCount; i++) {
+          const s = stars[i];
+          if (s.colorIndex !== c) continue;
+
+          s.alpha += s.speed;
+          if (s.alpha > 1 || s.alpha < 0.2) {
+            s.speed = -s.speed;
+          }
+
+          ctx.globalAlpha = Math.max(0.1, Math.min(1, s.alpha));
+          ctx.moveTo(s.x + s.size, s.y);
+          ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        }
         ctx.fill();
       }
 

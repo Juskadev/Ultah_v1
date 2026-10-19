@@ -62,7 +62,7 @@ export default function OrbitSystem({ photos, heroTitle, heroSubtitle, onPhotoCl
       >
         <Compass className="w-3.5 h-3.5 text-pink-400 animate-spin" style={{ animationDuration: '10s' }} />
         <span className="font-mono text-[11px] tracking-wider uppercase">
-          3D Cosmic Orbit — Arahkan kursor / klik foto
+          Semesta 3D Kosmik — Foto berputar di orbit
         </span>
       </motion.div>
 
@@ -75,7 +75,7 @@ export default function OrbitSystem({ photos, heroTitle, heroSubtitle, onPhotoCl
           className="mb-4"
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-900/30 border border-purple-500/30 text-pink-300 text-xs tracking-widest uppercase font-medium backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5" /> Center of My Universe
+            <Sparkles className="w-3.5 h-3.5" /> Pusat Dari Semestaku
           </span>
         </motion.div>
 

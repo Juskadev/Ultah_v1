@@ -94,12 +94,12 @@ export default function Lightbox({ photos, initialIndex, onClose }: LightboxProp
               }}
             >
               <span>📷</span>
-              <span style={{ fontSize: '14px', color: '#a78bfa', fontFamily: 'Outfit' }}>Photo {currentIndex + 1}</span>
+              <span style={{ fontSize: '14px', color: '#a78bfa', fontFamily: 'Outfit' }}>Foto {currentIndex + 1}</span>
             </div>
           ) : (
             <img
               src={photo.src}
-              alt={`Memory ${currentIndex + 1}`}
+              alt={`Kenangan ${currentIndex + 1}`}
               style={{ width: '100%', height: '100%', objectFit: 'cover', maxHeight: '60vh' }}
               onError={() => setImgError(true)}
             />
